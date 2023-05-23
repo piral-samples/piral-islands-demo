@@ -1,0 +1,28 @@
+{
+  "name": "mf-red",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.tsx",
+  "scripts": {
+    "start": "pilet debug",
+    "debug-all": "pilet debug ../mf-*/src/index.tsx",
+    "build": "pilet build"
+  },
+  "keywords": [],
+  "author": "Florian Rappl",
+  "license": "MIT",
+  "importmap": {
+    "imports": {
+      "react": ""
+    }
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.35",
+    "piral-cli": "next",
+    "piral-cli-esbuild": "^0.15.1",
+    "typescript": "^5.0.4"
+  }
+}

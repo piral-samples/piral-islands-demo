@@ -1,0 +1,7 @@
+{
+  "watch": ["src"],
+  "ignore": ["node_modules"],
+  "ext": "ts,tsx",
+  "exec": "npm run build && node ./dist/server.js",
+  "legacyWatch": true
+}
