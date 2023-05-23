@@ -5,12 +5,12 @@ import WebSocket from "ws";
 import { createServer } from "@hattip/adapter-node";
 import { events } from "./events";
 import { handler } from "./handler";
-import { feedEvents, port } from "./constants";
+import { feedEvents, port, host } from "./constants";
 import { installFetchInterceptor } from "./fetch";
 
 installFetchInterceptor();
 
-createServer(handler).listen(port, "localhost", () => {
+createServer(handler).listen(port, () => {
   const ws = new WebSocket(feedEvents, {
     perMessageDeflate: false,
   });
@@ -23,5 +23,5 @@ createServer(handler).listen(port, "localhost", () => {
     }
   });
 
-  console.log(`Server listening on http://localhost:${port}`);
+  console.log(`Server listening on http://${host}:${port}`);
 });
