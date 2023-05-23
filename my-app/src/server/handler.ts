@@ -7,6 +7,7 @@ import { getFragment } from "./route";
 import { SessionId, UserPiletContext } from "./types";
 import { initAsyncContext } from "./request";
 import { callRegisteredHandlers } from "./handlers";
+import { server } from "./constants";
 
 function handleStoreUpdate(context: UserPiletContext, data: FormData) {
   const store = data.get("store");
@@ -57,7 +58,7 @@ export const handler: HattipHandler = async (context) => {
       const body = await renderFragment(content, useragent, piletContext);
       return new Response(body);
     } else if (pathname === "/") {
-      return Response.redirect(context.request.url + "products");
+      return Response.redirect(server + "/products");
     } else if (pathname.startsWith("/products")) {
       const useragent = context.request.headers.get("user-agent");
       const [piletContext, sessionId] = await getPiletContext(context);
@@ -83,7 +84,7 @@ export const handler: HattipHandler = async (context) => {
     const data = await context.request.formData();
     initAsyncContext(sessionId, piletContext, context);
     handleStoreUpdate(piletContext, data);
-    return Response.redirect(context.request.url);
+    return Response.redirect(server + pathname);
   } else if (context.request.method === "PATCH") {
     const [piletContext, sessionId] = await getPiletContext(context);
     const data = await context.request.json();
