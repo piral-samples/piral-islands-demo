@@ -409,44 +409,42 @@ export function integrateDebugTools(
 ) {
   console.debug(state);
 
-  if (process.env.NODE_ENV === "production") {
-    installPiralDebug({
-      fireEvent(name, args) {
-        events.emit(name, args);
-      },
-      getDependencies() {
-        return Object.keys(state.deps);
-      },
-      getExtensions() {
-        return Object.keys(state.components);
-      },
-      getGlobalState() {
-        return state;
-      },
-      // @ts-ignore
-      getPilets() {
-        return state.pilets;
-      },
-      getRoutes() {
-        return ["/"];
-      },
-      addPilet(pilet) {},
-      removePilet(name) {},
-      updatePilet(origin, disabled) {
-        Object.entries(state.components).forEach(([slot]) => {
-          document
-            .querySelectorAll(
-              `piral-slot[name=${slot}] > piral-component[origin=${origin}]`
-            )
-            .forEach((element: HTMLElement) => {
-              if (disabled) {
-                element.style.display = "none";
-              } else {
-                element.style.display = "contents";
-              }
-            });
-        });
-      },
-    });
-  }
+  installPiralDebug({
+    fireEvent(name, args) {
+      events.emit(name, args);
+    },
+    getDependencies() {
+      return Object.keys(state.deps);
+    },
+    getExtensions() {
+      return Object.keys(state.components);
+    },
+    getGlobalState() {
+      return state;
+    },
+    // @ts-ignore
+    getPilets() {
+      return state.pilets;
+    },
+    getRoutes() {
+      return ["/"];
+    },
+    addPilet(pilet) {},
+    removePilet(name) {},
+    updatePilet(origin, disabled) {
+      Object.entries(state.components).forEach(([slot]) => {
+        document
+          .querySelectorAll(
+            `piral-slot[name=${slot}] > piral-component[origin=${origin}]`
+          )
+          .forEach((element: HTMLElement) => {
+            if (disabled) {
+              element.style.display = "none";
+            } else {
+              element.style.display = "contents";
+            }
+          });
+      });
+    },
+  });
 }

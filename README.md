@@ -4,13 +4,13 @@
 
 > Sample project to illustrate how islands architecture and micro frontends come together.
 
-:zap: Use the Piral Feed Service with `piral-base` for easy decoupled micro frontends.
+:zap: Use the Piral Feed Service with `piral-base` to create server-side composed micro frontends with client hydration following the islands architecture.
 
 Feel free to play around with the code using StackBlitz.
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/piral-samples/piral-islands-demo)
 
-You can also visit this demo at [islands-demo.samples.piral.cloud/](https://islands-demo.samples.piral.cloud/).
+You can also visit this demo at [piral-islands-demo.azurewebsites.net](https://piral-islands-demo.azurewebsites.net).
 
 ## License
 
