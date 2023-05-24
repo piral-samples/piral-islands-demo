@@ -18,7 +18,10 @@ createServer(handler).listen(port, () => {
   ws.on("message", (buffer) => {
     const msg = JSON.parse(buffer.toString("utf8"));
 
-    if (msg.type === 'update-pilet') {
+    if (
+      msg.type === "update-pilet" ||
+      (typeof msg.type === "undefined" && msg.spec === "v2")
+    ) {
       events.emit("pilet-changed", msg.data);
     }
   });

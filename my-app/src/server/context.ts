@@ -35,7 +35,14 @@ const loadPilet: PiletLoader = async (entry) => {
 
 const fetchPilets: PiletRequester = async () => {
   const result = await axios.get(feedUrl);
-  return result.data.items;
+
+  if ('items' in result.data) {
+    return result.data.items;
+  } else if (Array.isArray(result.data)) {
+    return result.data;
+  }
+
+  return [];
 };
 
 type PiletContent = [
